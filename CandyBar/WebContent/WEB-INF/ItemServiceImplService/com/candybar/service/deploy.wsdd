@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from ItemServiceImplService WSDL service -->
+
+  <service name="ItemServiceImpl" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://service.candybar.com"/>
+      <parameter name="wsdlServiceElement" value="ItemServiceImplService"/>
+      <parameter name="schemaQualified" value="http://model.candybar.com,http://service.candybar.com"/>
+      <parameter name="wsdlServicePort" value="ItemServiceImpl"/>
+      <parameter name="className" value="com.candybar.service.ItemServiceImpl"/>
+      <parameter name="wsdlPortType" value="ItemServiceImpl"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://service.candybar.com" xmlns:retNS="http://service.candybar.com" xmlns:rtns="http://model.candybar.com" name="getItem" qname="operNS:getItem" returnQName="retNS:getItemReturn" returnType="rtns:Item" soapAction="">
+        <parameter xmlns:pns="http://service.candybar.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:itemId" type="tns:int"/>
+      </operation>
+      <operation xmlns:operNS="http://service.candybar.com" xmlns:retNS="http://service.candybar.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="addItem" qname="operNS:addItem" returnQName="retNS:addItemReturn" returnType="rtns:boolean" soapAction="">
+        <parameter xmlns:pns="http://service.candybar.com" xmlns:tns="http://model.candybar.com" qname="pns:item" type="tns:Item"/>
+      </operation>
+      <operation xmlns:operNS="http://service.candybar.com" xmlns:retNS="http://service.candybar.com" xmlns:rtns="http://model.candybar.com" name="getAllItems" qname="operNS:getAllItems" returnQName="retNS:getAllItemsReturn" returnType="rtns:Item" soapAction="">
+      </operation>
+      <operation xmlns:operNS="http://service.candybar.com" xmlns:retNS="http://service.candybar.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="deleteItem" qname="operNS:deleteItem" returnQName="retNS:deleteItemReturn" returnType="rtns:boolean" soapAction="">
+        <parameter xmlns:pns="http://service.candybar.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:itemId" type="tns:int"/>
+      </operation>
+      <parameter name="allowedMethods" value="addItem getAllItems deleteItem getItem"/>
+
+      <typeMapping xmlns:ns="http://model.candybar.com" qname="ns:Item" type="java:com.candybar.model.Item" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+  </service>
+</deployment>

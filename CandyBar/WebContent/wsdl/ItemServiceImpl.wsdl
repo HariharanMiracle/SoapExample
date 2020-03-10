@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://service.candybar.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://service.candybar.com" xmlns:intf="http://service.candybar.com" xmlns:tns1="http://model.candybar.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://service.candybar.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://model.candybar.com"/>
+   <element name="getItem">
+    <complexType>
+     <sequence>
+      <element name="itemId" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getItemResponse">
+    <complexType>
+     <sequence>
+      <element name="getItemReturn" type="tns1:Item"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addItem">
+    <complexType>
+     <sequence>
+      <element name="item" type="tns1:Item"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addItemResponse">
+    <complexType>
+     <sequence>
+      <element name="addItemReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getAllItems">
+    <complexType/>
+   </element>
+   <element name="getAllItemsResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="getAllItemsReturn" type="tns1:Item"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="deleteItem">
+    <complexType>
+     <sequence>
+      <element name="itemId" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="deleteItemResponse">
+    <complexType>
+     <sequence>
+      <element name="deleteItemReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://model.candybar.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <complexType name="Item">
+    <sequence>
+     <element name="itemDescription" nillable="true" type="xsd:string"/>
+     <element name="itemId" type="xsd:int"/>
+     <element name="itemName" nillable="true" type="xsd:string"/>
+     <element name="itemPrice" type="xsd:double"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getItemRequest">
+
+      <wsdl:part element="impl:getItem" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getItemResponse">
+
+      <wsdl:part element="impl:getItemResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="deleteItemRequest">
+
+      <wsdl:part element="impl:deleteItem" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAllItemsResponse">
+
+      <wsdl:part element="impl:getAllItemsResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="deleteItemResponse">
+
+      <wsdl:part element="impl:deleteItemResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAllItemsRequest">
+
+      <wsdl:part element="impl:getAllItems" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addItemRequest">
+
+      <wsdl:part element="impl:addItem" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addItemResponse">
+
+      <wsdl:part element="impl:addItemResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="ItemServiceImpl">
+
+      <wsdl:operation name="getItem">
+
+         <wsdl:input message="impl:getItemRequest" name="getItemRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getItemResponse" name="getItemResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addItem">
+
+         <wsdl:input message="impl:addItemRequest" name="addItemRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:addItemResponse" name="addItemResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAllItems">
+
+         <wsdl:input message="impl:getAllItemsRequest" name="getAllItemsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getAllItemsResponse" name="getAllItemsResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deleteItem">
+
+         <wsdl:input message="impl:deleteItemRequest" name="deleteItemRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:deleteItemResponse" name="deleteItemResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="ItemServiceImplSoapBinding" type="impl:ItemServiceImpl">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getItem">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getItemRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getItemResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addItem">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addItemRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addItemResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAllItems">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAllItemsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAllItemsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deleteItem">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="deleteItemRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="deleteItemResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="ItemServiceImplService">
+
+      <wsdl:port binding="impl:ItemServiceImplSoapBinding" name="ItemServiceImpl">
+
+         <wsdlsoap:address location="http://localhost:8080/CandyBar/services/ItemServiceImpl"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
